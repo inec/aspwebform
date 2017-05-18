@@ -28,7 +28,7 @@ function ShowCurrentTime() {
             });
         }
         function OnSuccess(response) {
-            alert(response.d);
+          console.log(response.d);
         }
   </script>
 </head>

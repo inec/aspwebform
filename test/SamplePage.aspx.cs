@@ -16,10 +16,12 @@ public partial class SamplePage : System.Web.UI.Page
         {
             var client = new HttpClient();
 string url="https://jsonplaceholder.typicode.com"; //jsonObject.ToString()
-       var content = new StringContent("title=foo&body=bar&userId=1",
+ var content = new StringContent("title=foo&body=bar&userId=1",
         Encoding.UTF8, "application/json");
 var result = client.PostAsync(url, content).Result;
-return result.Content.ToString();
+
+
+return result.ToString();
 //  return "Hello " + name + Environment.NewLine + "The Current Time is: "                + DateTime.Now.ToString();
         }
 }
