@@ -31,9 +31,9 @@ public partial class SamplePage : System.Web.UI.Page
 public static string SimplePostRequest()
 {
     string str;
-    string postData = "title=foo";
+    string postData = "title=L34";
     postData = postData + "&body=bar";
-    postData = postData + "&userId=1";
+    postData = postData + "&userId=L36";
     
     var data = Encoding.UTF8.GetBytes(postData);
 
