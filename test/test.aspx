@@ -10,7 +10,7 @@
   <script>
      $(document).ready(function(){
 
-console.log("t");
+
 
 });
 
@@ -30,7 +30,7 @@ function ShowCurrentTime() {
         function OnSuccess(response) {
           console.log(response.d);
           //var obj = jQuery.parseJSON(response);
-          console.log(response.d[0]);
+//console.log( '{name: "' + $("#<%=txtUserName.ClientID%>")[0].value + '" }');
         }
   </script>
 </head>

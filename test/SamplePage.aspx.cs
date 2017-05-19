@@ -19,22 +19,24 @@ public partial class SamplePage : System.Web.UI.Page
 [System.Web.Services.WebMethod]
         public static string GetCurrentTime(string name)
         {
+
+              String jstr="{\"Id\":\"123\",\"DateOfRegistration\":\"2012-10-21T00:00:00+05:30\",\"Status\":0}";
+            
             /*var client = new HttpClient();
             string url="https://jsonplaceholder.typicode.com/posts"; 
-            String jstr="{\"Id\":\"123\",\"DateOfRegistration\":\"2012-10-21T00:00:00+05:30\",\"Status\":0}";
-                var content = new StringContent(jstr,        Encoding.UTF8, "application/json");
+              var content = new StringContent(jstr,        Encoding.UTF8, "application/json");
                 var result =client.PostAsync(url, content).Result;
             return result.ToString();*/
-          return SimplePostRequest();
+          return SimplePostRequest(name);
 }
 
-public static string SimplePostRequest()
+public static string SimplePostRequest(string jstr)
 {
     string str;
     string postData = "title=L34";
     postData = postData + "&body=bar";
-    postData = postData + "&userId=L36";
-    
+    postData = postData + "&userId=L36&L38Name="+jstr;
+  // postData=jstr; 
     var data = Encoding.UTF8.GetBytes(postData);
 
     var myRequest = WebRequest.CreateHttp("http://jsonplaceholder.typicode.com/posts");
