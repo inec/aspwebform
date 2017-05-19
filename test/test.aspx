@@ -29,6 +29,8 @@ function ShowCurrentTime() {
         }
         function OnSuccess(response) {
           console.log(response.d);
+          //var obj = jQuery.parseJSON(response);
+          console.log(response.d[0]);
         }
   </script>
 </head>
