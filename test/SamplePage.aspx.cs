@@ -7,7 +7,9 @@ using System.Web.UI.WebControls;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.IO;
-
+using System.Web;
+    using System.Web.Script;
+    using System.Web.Script.Serialization;
 
 public partial class SamplePage : System.Web.UI.Page
 {
@@ -19,6 +21,16 @@ public partial class SamplePage : System.Web.UI.Page
 [System.Web.Services.WebMethod]
         public static string GetCurrentTime(string name)
         {
+var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(new
+{
+    api_key = "my key",
+    action = "categories",
+      keyname = name,
+    store_id = "my store"
+});
+
+
+
 
               String jstr="{\"Id\":\"123\",\"DateOfRegistration\":\"2012-10-21T00:00:00+05:30\",\"Status\":0}";
             
@@ -36,12 +48,20 @@ public static string SimplePostRequest(string jstr)
     string postData = "title=L34";
     postData = postData + "&body=bar";
     postData = postData + "&userId=L36&L38Name="+jstr;
-  // postData=jstr; 
-    var data = Encoding.UTF8.GetBytes(postData);
+
+var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(new
+{
+    api_key = "my key",
+    action = "categories",
+    store_id = "my store"
+});
+
+    var data = Encoding.UTF8.GetBytes(json);
 
     var myRequest = WebRequest.CreateHttp("http://jsonplaceholder.typicode.com/posts");
     myRequest.Method = "POST";
     myRequest.ContentType = "application/x-www-form-urlencoded";
+   myRequest.ContentType = " application/json";
     myRequest.ContentLength = data.Length;
     myRequest.UserAgent = "WebRequestDemo";
 
