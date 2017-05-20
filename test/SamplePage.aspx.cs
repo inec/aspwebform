@@ -8,8 +8,8 @@ using System.Text;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Web;
-    using System.Web.Script;
-    using System.Web.Script.Serialization;
+using System.Web.Script;
+using System.Web.Script.Serialization;
 
 public partial class SamplePage : System.Web.UI.Page
 {
@@ -21,24 +21,6 @@ public partial class SamplePage : System.Web.UI.Page
 [System.Web.Services.WebMethod]
         public static string GetCurrentTime(string name)
         {
-var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(new
-{
-    api_key = "my key",
-    action = "categories",
-      keyname = name,
-    store_id = "my store"
-});
-
-
-
-
-              String jstr="{\"Id\":\"123\",\"DateOfRegistration\":\"2012-10-21T00:00:00+05:30\",\"Status\":0}";
-            
-            /*var client = new HttpClient();
-            string url="https://jsonplaceholder.typicode.com/posts"; 
-              var content = new StringContent(jstr,        Encoding.UTF8, "application/json");
-                var result =client.PostAsync(url, content).Result;
-            return result.ToString();*/
           return SimplePostRequest(name);
 }
 
@@ -51,17 +33,27 @@ public static string SimplePostRequest(string jstr)
 
 var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(new
 {
+
     api_key = "my key",
+    id="id",
+    pId=0,
+    app="Brio",
+    token="",
+    isS=true,
+    expiry="2017-10-11T14:37:39.1234123-09:00",
+    messages=new {},
+    OPEN=new {a="dddddddd",session="0132"},
+    tDate="0001-01-01T00:00:00",
     action = "categories",
     store_id = "my store"
 });
 
     var data = Encoding.UTF8.GetBytes(json);
-
-    var myRequest = WebRequest.CreateHttp("http://jsonplaceholder.typicode.com/posts");
+    var url="http://jsonplaceholder.typicode.com/posts";
+    var myRequest = WebRequest.CreateHttp(url);
     myRequest.Method = "POST";
-    myRequest.ContentType = "application/x-www-form-urlencoded";
-   myRequest.ContentType = " application/json";
+  //  myRequest.ContentType = "application/x-www-form-urlencoded";
+    myRequest.ContentType = " application/json";
     myRequest.ContentLength = data.Length;
     myRequest.UserAgent = "WebRequestDemo";
 
@@ -78,8 +70,7 @@ var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(
         StreamReader reader = new StreamReader(dataStream);
         object objResponse = reader.ReadToEnd();
         str=objResponse.ToString();
-        //var myUser = JsonConvert.DeserializeObject<User>(objResponse.ToString());
-        dataStream.Close();
+       dataStream.Close();
         theResponse.Close();
     }
 return str;
