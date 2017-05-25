@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue Guide Title</title>
+        <script src="https://unpkg.com/vue"></script>
+        <link rel="stylesheet" href="../vue.css" />
+    </head>
+
+<body>
+    <div id='app'> 
+        <div v-bind:title="ranNum" v-if="shown">Hover<div>
+        
+        <div>
+        <script>
+        
+        var app= new Vue({
+            el:'#app',
+            data:{
+            ranNum: Math.floor(Math.random()*15)+1,
+            shown:true
+            }
+        })
+        </script>
+    </body>
+</html>
